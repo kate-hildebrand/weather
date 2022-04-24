@@ -13,6 +13,7 @@ weather_data = JSON.parse(response)
 # write a weather summary out to the screen including the current conditions and upcoming forecast.
 # Something like the output below.
 
+
 # Sample output:
 # In Chicago, IL it is currently 67 degrees and cloudy.
 # The rest of today will be a high of 65 and scattered shows.
@@ -34,6 +35,41 @@ weather_data = JSON.parse(response)
 
 # 1. inspect the weather_data hash
 # puts weather_data
+
+region = weather_data ["region"]
+current_temp = weather_data ["currentConditions"]["temp"]["f"]
+current_comment = weather_data ["currentConditions"]["comment"]
+
+# pull day of week out of hash and put into an array to loop 
+days = [weather_data ["next_days"][0]["day"],weather_data ["next_days"][1]["day"],weather_data ["next_days"][2]["day"],weather_data ["next_days"][3]["day"],weather_data ["next_days"][4]["day"],weather_data ["next_days"][5]["day"],weather_data ["next_days"][6]["day"]]
+for day in days
+        puts day
+end
+
+# pull highs out of hash and put into an array to loop 
+highs = [weather_data ["next_days"][0]["max_temp"]["f"],weather_data ["next_days"][1]["max_temp"]["f"],weather_data ["next_days"][2]["max_temp"]["f"],weather_data ["next_days"][3]["max_temp"]["f"],weather_data ["next_days"][4]["max_temp"]["f"],weather_data ["next_days"][5]["max_temp"]["f"],weather_data ["next_days"][6]["max_temp"]["f"]]
+# loop the highs array
+for high in highs 
+    puts high
+end 
+
+# pull comments out of hash and put into an array to loop 
+comments = [weather_data ["next_days"][0]["comment"],weather_data ["next_days"][1]["comment"],weather_data ["next_days"][2]["comment"],weather_data ["next_days"][3]["comment"],weather_data ["next_days"][4]["comment"],weather_data ["next_days"][5]["comment"],weather_data ["next_days"][6]["comment"]]
+for comment in comments
+        puts comment
+end
+
+# try to loop it together 
+for day in days 
+        for high in highs
+            for comment in comments
+            puts "#{day}: a high of #{high} and #{comment}"
+            end
+        end
+    end
+
+#puts "In #{region}, it is currently #{current_temp} degrees and #{current_comment}(y)"
+#puts "The rest of today will be a high of #{today_high} and #{today_weather}"
 
 # CHALLENGE
 # Can you display the weather forecast summary for a user-entered city?
