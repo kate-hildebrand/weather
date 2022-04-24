@@ -42,34 +42,41 @@ current_comment = weather_data ["currentConditions"]["comment"]
 
 # pull day of week out of hash and put into an array to loop 
 days = [weather_data ["next_days"][0]["day"],weather_data ["next_days"][1]["day"],weather_data ["next_days"][2]["day"],weather_data ["next_days"][3]["day"],weather_data ["next_days"][4]["day"],weather_data ["next_days"][5]["day"],weather_data ["next_days"][6]["day"]]
-for day in days
-        puts day
-end
+# for day in days
+#         puts day
+# end
 
 # pull highs out of hash and put into an array to loop 
 highs = [weather_data ["next_days"][0]["max_temp"]["f"],weather_data ["next_days"][1]["max_temp"]["f"],weather_data ["next_days"][2]["max_temp"]["f"],weather_data ["next_days"][3]["max_temp"]["f"],weather_data ["next_days"][4]["max_temp"]["f"],weather_data ["next_days"][5]["max_temp"]["f"],weather_data ["next_days"][6]["max_temp"]["f"]]
 # loop the highs array
-for high in highs 
-    puts high
-end 
+# for high in highs 
+#     puts high
+# end 
 
 # pull comments out of hash and put into an array to loop 
 comments = [weather_data ["next_days"][0]["comment"],weather_data ["next_days"][1]["comment"],weather_data ["next_days"][2]["comment"],weather_data ["next_days"][3]["comment"],weather_data ["next_days"][4]["comment"],weather_data ["next_days"][5]["comment"],weather_data ["next_days"][6]["comment"]]
-for comment in comments
-        puts comment
-end
+#puts comments
+# for comment in comments
+#         puts comment
+# end
 
 # try to loop it together 
-for day in days 
-        for high in highs
-            for comment in comments
-            puts "#{day}: a high of #{high} and #{comment}"
-            end
-        end
-    end
-
-#puts "In #{region}, it is currently #{current_temp} degrees and #{current_comment}(y)"
-#puts "The rest of today will be a high of #{today_high} and #{today_weather}"
+# for day in days 
+#         for high in highs
+#             for comment in comments
+#             puts "#{day}: a high of #{high} and #{comment}"
+#             end
+#         end
+#     end 
+    
+puts "In #{region}, it is currently #{current_temp} degrees and #{current_comment}(y)"
+puts "The rest of #{days[0]} will be a high of #{highs[0]} and #{comments[0]}"
+puts "#{days[1]}: high of #{highs[1]} and #{comments[1]}"
+puts "#{days[2]}: high of #{highs[2]} and #{comments[2]}"
+puts "#{days[3]}: high of #{highs[3]} and #{comments[3]}"
+puts "#{days[4]}: high of #{highs[4]} and #{comments[4]}"
+puts "#{days[5]}: high of #{highs[5]} and #{comments[5]}"
+puts "#{days[6]}: high of #{highs[6]} and #{comments[6]}"
 
 # CHALLENGE
 # Can you display the weather forecast summary for a user-entered city?
