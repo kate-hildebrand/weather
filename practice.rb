@@ -39,36 +39,24 @@ weather_data = JSON.parse(response)
 region = weather_data ["region"]
 current_temp = weather_data ["currentConditions"]["temp"]["f"]
 current_comment = weather_data ["currentConditions"]["comment"]
-
-
-    
 puts "In #{region}, it is currently #{current_temp} degrees and #{current_comment}(y)"
-# puts "The rest of #{days[0]} will be a high of #{highs[0]} and #{comments[0]}"
-# puts "#{days[1]}: high of #{highs[1]} and #{comments[1]}"
-# puts "#{days[2]}: high of #{highs[2]} and #{comments[2]}"
-# puts "#{days[3]}: high of #{highs[3]} and #{comments[3]}"
-# puts "#{days[4]}: high of #{highs[4]} and #{comments[4]}"
-# puts "#{days[5]}: high of #{highs[5]} and #{comments[5]}"
-# puts "#{days[6]}: high of #{highs[6]} and #{comments[6]}"
-# pull day of week out of hash and put into an array to loop 
-#days = [weather_data ["next_days"][0]["day"],weather_data ["next_days"][1]["day"],weather_data ["next_days"][2]["day"],weather_data ["next_days"][3]["day"],weather_data ["next_days"][4]["day"],weather_data ["next_days"][5]["day"],weather_data ["next_days"][6]["day"]]
-# for day in days
-#         puts day
-# end
 
-# pull highs out of hash and put into an array to loop 
-#highs = [weather_data ["next_days"][0]["max_temp"]["f"],weather_data ["next_days"][1]["max_temp"]["f"],weather_data ["next_days"][2]["max_temp"]["f"],weather_data ["next_days"][3]["max_temp"]["f"],weather_data ["next_days"][4]["max_temp"]["f"],weather_data ["next_days"][5]["max_temp"]["f"],weather_data ["next_days"][6]["max_temp"]["f"]]
-# loop the highs array
-# for high in highs 
-#     puts high
-# end 
+today_forecast = weather_data["next_days"][0]
+#puts today_forecast
+today_forecast_high = weather_data["next_days"][0]["max_temp"]["f"]
+today_forecast_comment = weather_data["next_days"][0]["comment"]
+puts "The rest of today will be a high of #{today_forecast["max_temp"]["f"]} and #{today_forecast["comment"]}"
 
-# pull comments out of hash and put into an array to loop 
-#comments = [weather_data ["next_days"][0]["comment"],weather_data ["next_days"][1]["comment"],weather_data ["next_days"][2]["comment"],weather_data ["next_days"][3]["comment"],weather_data ["next_days"][4]["comment"],weather_data ["next_days"][5]["comment"],weather_data ["next_days"][6]["comment"]]
-# puts comments
-# for comment in comments
-#         puts comment
-# end
+puts "The upcoming weather forecast is:"
+
+for daily_forecast_data in weather_data["next_days"]
+    day_of_week = daily_forecast_data["day"]
+    daily_high = daily_forecast_data["max_temp"]["f"]
+    daily_conditions = daily_forecast_data ["comment"]
+    puts "#{day_of_week}: a high of #{daily_high} and #{daily_conditions}"
+end
+    
+
 
 # CHALLENGE
 # Can you display the weather forecast summary for a user-entered city?
