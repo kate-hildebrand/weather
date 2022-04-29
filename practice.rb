@@ -1,4 +1,9 @@
 # DON'T CHANGE THIS CODE
+# puts "What city are you in?"
+# city = gets.chomp
+
+
+
 # ----------------------
 require "net/http"
 require "json"
@@ -36,32 +41,55 @@ weather_data = JSON.parse(response)
 # 1. inspect the weather_data hash
 #puts weather_data
 
-region = weather_data ["region"]
-current_temp = weather_data ["currentConditions"]["temp"]["f"]
-current_comment = weather_data ["currentConditions"]["comment"]
-puts "In #{region}, it is currently #{current_temp} degrees and #{current_comment}(y)"
+#puts weather_data
+#pull out today's conditions 
+region = weather_data["region"]
+current_temp = weather_data["currentConditions"]["temp"]["f"]
+#puts current_temp
+current_condition = weather_data["currentConditions"]["comment"]
+# puts current_condition
+puts "Today's high for #{region} is #{current_temp} and the weather is #{current_condition}"
+# rest of today
+puts "The rest of today will have a high of #{weather_data["next_days"][0]["max_temp"]["f"]} with conditions of #{weather_data["next_days"][0]["comment"]}"
 
-today_forecast = weather_data["next_days"][0]
-#puts today_forecast
-today_forecast_high = weather_data["next_days"][0]["max_temp"]["f"]
-today_forecast_comment = weather_data["next_days"][0]["comment"]
-puts "The rest of today will be a high of #{today_forecast["max_temp"]["f"]} and #{today_forecast["comment"]}"
+# craete the loop for the rest of the week 
+for daily_forecast in weather_data["next_days"]
+    day_of_week = daily_forecast["day"]
+    high_temp = daily_forecast["max_temp"]["f"]
+    conditions = daily_forecast["comment"]
+    puts "#{day_of_week}: the high is #{high_temp} and conditions are #{conditions}"
+    end
 
-puts "The upcoming weather forecast is:"
+    # for daily_forecast_data in weather_data["next_days"]
+    #     day_of_week = daily_forecast_data["day"]
+    #     daily_high = daily_forecast_data["max_temp"]["f"]
+    #     daily_conditions = daily_forecast_data ["comment"]
+    #     puts "#{day_of_week}: a high of #{daily_high} and #{daily_conditions}"
+    # end
 
-for daily_forecast_data in weather_data["next_days"]
-    day_of_week = daily_forecast_data["day"]
-    daily_high = daily_forecast_data["max_temp"]["f"]
-    daily_conditions = daily_forecast_data ["comment"]
-    puts "#{day_of_week}: a high of #{daily_high} and #{daily_conditions}"
-end
-    
+#this is the correct code - try to redo w/out the help 
+# if weather_data["status"] == "fail"
+#     puts "We don't know that city, try again"
+# else
+
+# region = weather_data ["region"]
+# current_temp = weather_data ["currentConditions"]["temp"]["f"]
+# current_comment = weather_data ["currentConditions"]["comment"]
+# puts "In #{region}, it is currently #{current_temp} degrees and #{current_comment}(y)"
+
+# today_forecast = weather_data["next_days"][0]
+# #puts today_forecast
+# today_forecast_high = weather_data["next_days"][0]["max_temp"]["f"]
+# today_forecast_comment = weather_data["next_days"][0]["comment"]
+# puts "The rest of today will be a high of #{today_forecast["max_temp"]["f"]} and #{today_forecast["comment"]}"
+
+# puts "The upcoming weather forecast is:"
+
+
+# end  
 
 
 # CHALLENGE
 # Can you display the weather forecast summary for a user-entered city?
 # Use the following code at the very top of the file and then replace "chicago" in the api url with the user-entered city:
-# puts "What city are you in?"
-# city = gets.chomp
-# puts city
 # Note: what happens if the user-entered value is not a known city? You'll want to do some error handling.
